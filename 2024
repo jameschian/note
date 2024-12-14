@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柱状图 ECharts 示例</title>
+    <!-- 引入 ECharts 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <style>
+        /* 设置图表容器的大小 */
+        #main {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: #6e89e6; /* 背景色 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 图表容器 -->
+    <div id="main"></div>
+
+    <script>
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '柱状图 ECharts 示例',
+                textStyle: {
+                    color: '#fff'
+                },
+                left: 'center'
+            },
+
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {
+                data: ['2023年1-5月占全国比重（%）', '2024年1-5月占全国比重（%）'],
+                textStyle: {
+                    color: '#fff'
+                },
+                top: '5%'
+            },
+            xAxis: {
+                type: 'category',
+                data: ['原油（国内）', '原煤', '发电机组'],
+                axisLine: {
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisLabel: {
+                    color: '#fff'
+                }
+            },
+            yAxis: {
+                type: 'value',
+                axisLine: {
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: '#444'
+                    }
+                },
+                axisLabel: {
+                    color: '#fff'
+                }
+            },
+         
+            series: [
+                {
+                    name: '2023年1-5月占全国比重（%）',
+                    type: 'bar',
+                    data: [97.7, 24.7, 29.9],
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: '#83bff6' },
+                                { offset: 0.5, color: '#188df0' },
+                                { offset: 1, color: '#188df0' }
+                            ]
+                        ),
+                        shadowColor: 'rgba(0, 0, 0, 0.5)',
+                        shadowBlur: 10,
+                        barBorderRadius: [10, 10, 0, 0] // 圆角设置
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        color: '#fff', // 数值颜色
+                        fontSize: 14 // 数值大小
+                    }
+                },
+                {
+                    name: '2024年1-5月占全国比重（%）',
+                    type: 'bar',
+                    data: [97.7, 25.8, 31.5],
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: '#ff9a9e' },
+                                { offset: 0.5, color: '#ff6a6a' },
+                                { offset: 1, color: '#ff6a6a' }
+                            ]
+                        ),
+                        shadowColor: 'rgba(0, 0, 0, 0.5)',
+                        shadowBlur: 10,
+                        barBorderRadius: [10, 10, 0, 0] // 圆角设置
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        color: '#fff', // 数值颜色
+                        fontSize: 14 // 数值大小
+                    }
+                }
+            ],
+            graphic: {
+                type: 'image',
+                id: 'background',
+                left: 'center',
+                top: 'center',
+                z: -10,
+                bounding: 'raw',
+                origin: [0, 0],
+                style: {
+                    image: 'images/background.jpg', // 本地图片路径
+                    width: 800, // 图片宽度
+                    height: 600, // 图片高度
+                    opacity: 0.2 // 图片透明度
+                }
+            }
+        };
+
+        // 使用刚指定的配置项和数据显示图表
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
+
